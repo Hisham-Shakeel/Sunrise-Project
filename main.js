@@ -16,15 +16,7 @@ let htmlLogoImg = document.getElementById("html-logo-img");
 // DRAW SKY
 ctx.lineWidth = 4;
 ctx.fillStyle = "blue";
-ctx.strokeStyle = "blue";
-ctx.beginPath();
-ctx.moveTo(0, 0);
-ctx.lineTo(0, 450);
-ctx.lineTo(800, 450);
-ctx.lineTo(800, 0);
-ctx.lineTo(0, 0);
-ctx.fill();
-ctx.stroke(); // Draw the specified path
+ctx.fillRect(0, 0, 800, 450);
 
 // CIRCLES / ARCS
 ctx.fillStyle = "red";
@@ -35,15 +27,7 @@ ctx.fill();
 // DRAW Ground
 ctx.lineWidth = 4;
 ctx.fillStyle = "rgb(0, 163, 8)";
-ctx.strokeStyle = "rgb(0, 163, 8)";
-ctx.beginPath();
-ctx.moveTo(0, 450);
-ctx.lineTo(0, 650);
-ctx.lineTo(800, 650);
-ctx.lineTo(800, 450);
-ctx.lineTo(0, 450);
-ctx.fill();
-ctx.stroke(); // Draw the specified path
+ctx.fillRect(0, 450, 800, 450);
 
 // DRAW IMAGES
 ctx.drawImage(htmlLogoImg, 325, 225); // Draw image with top left corner of (325, 225)
