@@ -9,26 +9,51 @@ cnv.height = 600;
 // Store images in variables
 let htmlLogoImg = document.getElementById("html-logo-img");
 
-// Let's draw some stuff using the graphics context (ctx)
+let x1 = 325;
+let x2 = 375;
+let frameCount = 0;
 
-// Draw Rectangles
+requestAnimationFrame(draw);
+function draw() {
+  // LOGIC
+  x1--;
+  x2++;
 
-// DRAW SKY
-ctx.lineWidth = 4;
-ctx.fillStyle = "blue";
-ctx.fillRect(0, 0, 800, 450);
+  // Reset animation if x1 < -99
+  if (x1 < -99) {
+    x1 = 325;
+  }
 
-// CIRCLES / ARCS
-ctx.fillStyle = "red";
-ctx.beginPath();
-ctx.arc(400, 450, 30, 0, 2 * Math.PI); // Circle (0 to 2*PI) with center (250, 500) and radius 30
-ctx.fill();
+  // Reset animation if x2 > 799
+  if (x2 > 799) {
+    x2 = 375;
+  }
 
-// DRAW Ground
-ctx.lineWidth = 4;
-ctx.fillStyle = "rgb(0, 163, 8)";
-ctx.fillRect(0, 450, 800, 450);
+  // DRAWING
+  // Let's draw some stuff using the graphics context (ctx)
 
-// DRAW IMAGES
-ctx.drawImage(htmlLogoImg, 325, 225); // Draw image with top left corner of (325, 225)
-ctx.drawImage(htmlLogoImg, 375, 200); // Draw image with top left corner of (375, 200)
+  // Draw Rectangles
+
+  // DRAW SKY
+  ctx.lineWidth = 4;
+  ctx.fillStyle = "blue";
+  ctx.fillRect(0, 0, 800, 450);
+
+  // CIRCLES / ARCS
+  ctx.fillStyle = "red";
+  ctx.beginPath();
+  ctx.arc(400, 450, 30, 0, 2 * Math.PI); // Circle (0 to 2*PI) with center (250, 500) and radius 30
+  ctx.fill();
+
+  // DRAW Ground
+  ctx.lineWidth = 4;
+  ctx.fillStyle = "rgb(0, 163, 8)";
+  ctx.fillRect(0, 450, 800, 450);
+
+  // DRAW IMAGES
+  ctx.drawImage(htmlLogoImg, x1, 225); // Draw image with top left corner of (x1, 225)
+  ctx.drawImage(htmlLogoImg, x2, 200); // Draw image with top left corner of (x2, 200)
+
+  // REQUEST ANIMATION FRAME
+  requestAnimationFrame(draw);
+}
