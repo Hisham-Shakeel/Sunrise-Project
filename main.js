@@ -30,8 +30,6 @@ function draw() {
   }
 
   // DRAWING
-  // Let's draw some stuff using the graphics context (ctx)
-
   // Draw Rectangles
 
   // DRAW SKY
