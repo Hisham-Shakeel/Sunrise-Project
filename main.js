@@ -12,7 +12,7 @@ let htmlLogoImg = document.getElementById("html-logo-img");
 let x1 = 325;
 let x2 = 375;
 let sun = 450;
-let size = 30;
+let size = -245;
 let frameCount = 0;
 
 requestAnimationFrame(draw);
@@ -23,20 +23,13 @@ function draw() {
   sun--;
   size++;
 
-  // Reset animation if x1 < -99
-  if (x1 < -99) {
-    x1 = 325;
-    sun = 450;
-    ctx.fillStyle = "red";
-    ctx.beginPath();
-    ctx.arc(400, 450, 30, 0, 2 * Math.PI); // Circle (0 to 2*PI) with center (250, 500) and radius 30
-    ctx.fill();
-  }
-
   // Reset animation if x2 > 799
   if (x2 > 799) {
+    x1 = 325;
     x2 = 375;
     sun = 450;
+    size = -245;
+    frameCount = 0;
     ctx.fillStyle = "red";
     ctx.beginPath();
     ctx.arc(400, 450, 30, 0, 2 * Math.PI); // Circle (0 to 2*PI) with center (250, 500) and radius 30
@@ -45,9 +38,6 @@ function draw() {
 
   // Stop animation if sun < 174
   if (sun < 174) {
-    sun = 174;
-    size++;
-    ctx.fillStyle = "yellow";
     ctx.beginPath();
     ctx.arc(400, 175, size, 0, 2 * Math.PI); // Circle (0 to 2*PI) with center (250, 500) and radius 30
     ctx.fill();
@@ -61,17 +51,19 @@ function draw() {
   ctx.fillStyle = "blue";
   ctx.fillRect(0, 0, 800, 450);
 
-  // CIRCLES / ARCS
-  ctx.fillStyle = "red";
-  ctx.beginPath();
-  ctx.arc(400, sun, 30, 0, 2 * Math.PI); // Circle (0 to 2*PI) with center (250, 500) and radius 30
-  ctx.fill();
-
-  // Change color if sun < 125
-  if (sun < 175) {
-    ctx.fillStyle = "yellow";
+  // Change color if sun < 174
+  if (sun < 174) {
+    // CIRCLES / ARCS
+    size = size + 1 / 200;
+    frameCount = frameCount + 2;
+    ctx.fillStyle = `rgb(255, ${frameCount}, 0)`;
     ctx.beginPath();
-    ctx.arc(400, 175, 30, 0, 2 * Math.PI); // Circle (0 to 2*PI) with center (250, 500) and radius 30
+    ctx.arc(400, 175, size, 0, 2 * Math.PI); // Circle (0 to 2*PI) with center (250, 500) and radius 30
+    ctx.fill();
+  } else {
+    ctx.fillStyle = "red";
+    ctx.beginPath();
+    ctx.arc(400, sun, 30, 0, 2 * Math.PI); // Circle (0 to 2*PI) with center (250, 500) and radius 30
     ctx.fill();
   }
 
